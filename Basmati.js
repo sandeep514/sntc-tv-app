@@ -127,7 +127,6 @@ export default function Basmati() {
 																			<View style={styles.card}>
 																				{Object.values(a).map((c ,d) => {
 																					return(
-
 																						Object.values(c).map((e ,f) => {	
 																							return(
 																								<View>
