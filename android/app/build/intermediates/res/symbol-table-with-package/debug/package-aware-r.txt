@@ -1344,6 +1344,7 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable images_1531536225_pngfileswitchaccounticonpngclipartremovebgpreview
 drawable images_2
+drawable images_icon
 drawable mtrl_dialog_background
 drawable mtrl_dropdown_arrow
 drawable mtrl_ic_arrow_drop_down
