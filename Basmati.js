@@ -1,5 +1,5 @@
 import React, {useRef ,useState, useEffect} from 'react';
-import { Dimensions } from 'react-native';
+import { AsyncStorage, Dimensions } from 'react-native';
 import { Pressable } from 'react-native';
 import {Button,Image,StyleSheet,Text,View,FlatList,Item,ScrollView,} from 'react-native';
 import {ListItem, Avatar} from 'react-native-elements';
@@ -67,7 +67,6 @@ export default function Basmati() {
 			setSelectedState(availableStates[counter]);
 
 		}, 60000);
-
 	}, []);
 	
 	const getStateData = (state) => {
