@@ -8,6 +8,7 @@ export default function Basmati() {
 	const windowWidth = Dimensions.get('window').width;
 	const windowHeight = Dimensions.get('window').height;
 
+
 	const [isLoading, setLoading] = useState(true);
 	const [HasBasmatiContent, setHasBasmatiContent] = useState(false);
 	const [HasNonBasmatiContent, setHasNonBasmatiContent] = useState(false);
