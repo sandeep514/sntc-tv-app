@@ -87,7 +87,7 @@ export default function Basmati() {
 			// setTransportData(json)
 			fetch('https://snjtradelink.com/admin/public/api/get/ports')
 			.then((response) => response.json())
-			.then((json) => {setTransportData(json.data) , console.log(Object.values(json.data).length)} )
+			.then((json) => {setTransportData(json.data), console.log(json.data) } )
 			.catch((error) => {console.error(error)})
 			.finally(() => {setHasTransport(true)});
 		}
@@ -126,8 +126,8 @@ export default function Basmati() {
 								(basmati.length > 0) ? 
 									<View>
 										<View style={{ }} >
-											<Text style={{color: '#019340', fontSize: 22,marginTop: 1,marginLeft: 10,marginBottom: 1,padding: 0,margin: 0}}>
-												Basmati
+											<Text style={{color: '#000', fontSize: 22,marginTop: 1,marginLeft: 10,marginBottom: 1,padding: 0,margin: 0,textAlign: 'center'}}>
+												Basmati live price (Prices in quintals)
 											</Text>
 										</View>
 										<View style={styles.flexDirectionRow}>
@@ -184,8 +184,8 @@ export default function Basmati() {
 								(nonbasmati.length > 0) ?
 									<View>
 										<View >
-											<Text style={{color: '#019340', fontSize: 22,marginTop: 25,marginLeft: 10,marginBottom: 5}}>
-												Non Basmati
+											<Text style={{color: '#000', fontSize: 22,marginTop: 25,marginLeft: 10,marginBottom: 5,textAlign: 'center'}}>
+												Non-Basmati live price (Prices in quintals)
 											</Text>
 										</View>
 										<View style={styles.flexDirectionRow}>
@@ -243,35 +243,35 @@ export default function Basmati() {
 								(Object.values(transportData).length > 0) ? 
 									<View>
 										<View >
-											<Text style={{color: '#019340', fontSize: 22,marginTop: 5,marginLeft: 10,marginBottom: 5}}>
-												Transport
+											<Text style={{color: '#000', fontSize: 22,marginTop: 5,marginLeft: 10,marginBottom: 5,alignItems:'center',textAlign:'center'}}>
+												Transport(Prices in quintals 30-35 MT)
 											</Text>
 										</View>
 										<View style={styles.flexDirectionRow}>
 											{( hasTransport ) ?
 												(transportData != undefined) ?
-												(Object.values(transportData).length > 0)  ? 
-													Object.values(transportData).map(( m , k) => { 
-														return(
-															<View style={{marginTop: 10, borderColor: '#94b242', borderWidth: 2.5,marginHorizontal: 5,padding: 5,borderRadius: 10,width: '24%'}}>
-																<View><Text style={{fontWeight: '700',fontSize: 16}}>{Object.keys(transportData)[k]}</Text></View>
-
-																{Object.keys(m).map((val , key) => {
-																	
-																	return(
-																		<ListItem bottomDivider containerStyle={{backgroundColor: 'transparent' ,paddingVertical: 3,paddingLeft: 5,paddingRight: 5}}>
-																			<Text style={styles.riceName}>{val}</Text>
-																			<ListItem.Content>
-																				<ListItem.Title style={{  }}>Rs {Object.values(m)[0][0].price}</ListItem.Title>
-																			</ListItem.Content>
-																		</ListItem>
-																	)
-																})}
-																{/* <Text> {transportData[k]}</Text>  */}
-															</View>
-														)
-													})
-												: <Text></Text> 
+													(Object.values(transportData).length > 0)  ? 
+														Object.values(transportData).map(( m , k) => { 
+															return(
+																<View key={k} style={{marginTop: 10, borderColor: '#94b242', borderWidth: 2.5,marginHorizontal: 5,padding: 5,borderRadius: 10,width: '24%'}}>
+																	<View key={k}>
+																		<Text key={k} style={{fontWeight: '700',fontSize: 16,textAlign: 'center'}}>{(Object.keys(transportData)[k]).replace('_', ' ')}</Text>
+																	</View>
+																	{Object.keys(m).map((val , key) => {
+																		return(
+																			<ListItem bottomDivider containerStyle={{backgroundColor: 'transparent' ,paddingVertical: 3,paddingLeft: 5,paddingRight: 5}}>
+																				<Text style={styles.riceName}>{val.replace('_' , ' ')}</Text>
+																				<ListItem.Content>
+																					<ListItem.Title style={{ }}>Rs {Object.values(m)[key][0].price}</ListItem.Title>
+																				</ListItem.Content>
+																			</ListItem>
+																		)
+																	})}
+																	{/* <Text> {transportData[k]}</Text>  */}
+																</View>
+															)
+														})
+													: <Text></Text> 
 												: <Text></Text>
 												
 											: <Text></Text>}
@@ -286,14 +286,29 @@ export default function Basmati() {
 			</View>
 		
 			
-			<View style={{flex: 0.5,backgroundColor: '#94b242',justifyContent: 'space-between',flexDirection: 'row',paddingLeft: 20}}>
+			<View style={{flex: 0.5,backgroundColor: '#94b242',justifyContent: 'space-evenly',flexDirection: 'row',paddingLeft: 20}}>
 				<View>
-					<Text style={{fontSize: 20,color: '#fefcd6'}}>00000-00000</Text>
+					<View style={{width: '80%',flexDirection: 'row'}}>
+						<View style={{}}>
+							<Text style={{fontSize: 16,color: '#fefcd6'}}>For Brand Marketing & Bulk Rice Sourcing:  </Text>
+						</View>
+						<View>
+							<Text style={{fontSize: 17,color: '#fefcd6'}}>+91-98993-30123, </Text>
+						</View>
+						<View>
+							<Text style={{fontSize: 17,color: '#fefcd6'}}>info@sntcgroup.com, </Text>
+						</View>
+						<View>
+							<Text style={{fontSize: 17,color: '#fefcd6'}}>https://www.sntcgroup.com </Text>
+						</View>
+					</View>
+					<View style={{width: '80%',flexDirection: 'row'}}>
+						<View style={{}}>
+							<Text style={{fontSize: 13,color: '#fefcd6'}}>* Above mentioned information is just a market update not an offer:  </Text>
+						</View>
+					</View>
 				</View>
-				<View>
-					<Text style={{fontSize: 20,color: '#fefcd6'}}>email.com</Text>
-				</View>
-				<View>
+				<View style={{width: '20%'}}>
 					<Image source={require('./images/icon.png')} style={{width: 70 , height: 70,position: 'absolute',zIndex: 99999, bottom: 0,right: 0}} />
 				</View>
 			</View>
@@ -310,13 +325,16 @@ const styles = {
 	
 	},
 	stable:{
-		color: '#000'
+		color: '#000',
+		fontSize: 13,
 	},
 	up:{
-		color: '#fefcd6'
+		color: '#94b242',
+		fontSize: 13,
 	},
 	down:{
-		color: 'red'
+		color: 'red',
+		fontSize: 13,
 	},
 	flex:{
 		flex: 1
@@ -346,7 +364,7 @@ const styles = {
 	Transportstate: {
 		color: '#fff',
 		fontSize: 16,
-		marginLeft: 0,
+		marginLeft: 10,
 		paddingVertical: 5,
 		paddingHorizontal: 10,
 		backgroundColor: 'orange',
